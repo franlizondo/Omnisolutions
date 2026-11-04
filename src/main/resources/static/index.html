@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Omni Solutions | Acceso</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header class="topbar auth-header">
+    <div class="topbar-inner" id="marca"></div>
+</header>
+
+<main class="auth">
+    <section class="auth-hero">
+        <h1>Conectamos empleadores con personas que quieren trabajar</h1>
+        <p>Omni Solutions es una red profesional simple: los empleadores publican trabajos, los empleados
+            ofrecen sus servicios y se postulan, y el contacto se comparte solo cuando ambas partes están de acuerdo.</p>
+        <ul class="auth-points">
+            <li><span class="dot">1</span><div><strong>Publicá</strong><br><span class="muted">Trabajos si sos empleador, servicios si sos empleado.</span></div></li>
+            <li><span class="dot">2</span><div><strong>Postulate</strong><br><span class="muted">Los empleados se postulan a los trabajos activos.</span></div></li>
+            <li><span class="dot">3</span><div><strong>Conectá</strong><br><span class="muted">El teléfono se revela únicamente con una postulación aceptada.</span></div></li>
+        </ul>
+    </section>
+
+    <section class="card auth-card" aria-label="Acceso">
+        <div class="tabs" role="tablist">
+            <button class="tab active" type="button" role="tab" data-tab="login" aria-selected="true">Iniciar sesión</button>
+            <button class="tab" type="button" role="tab" data-tab="registro" aria-selected="false">Crear cuenta</button>
+        </div>
+
+        <div id="alerta" class="alert" hidden></div>
+
+        <form id="form-login" novalidate>
+            <div class="form-group">
+                <label for="login-usuario">Usuario</label>
+                <input type="text" id="login-usuario" name="usuario" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="login-contrasena">Contraseña</label>
+                <input type="password" id="login-contrasena" name="contrasena" autocomplete="current-password" required>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
+        </form>
+
+        <form id="form-registro" novalidate hidden>
+            <div class="form-group">
+                <label for="reg-nombre">Nombre y apellido</label>
+                <input type="text" id="reg-nombre" name="nombre" maxlength="100" autocomplete="name" required>
+            </div>
+            <div class="form-group">
+                <label for="reg-usuario">Usuario</label>
+                <input type="text" id="reg-usuario" name="usuario" maxlength="50" autocomplete="username" required>
+                <div class="hint">Letras, números, punto, guion o guion bajo (3 a 50 caracteres).</div>
+            </div>
+            <div class="form-group">
+                <label for="reg-contrasena">Contraseña</label>
+                <input type="password" id="reg-contrasena" name="contrasena" minlength="6" maxlength="72" autocomplete="new-password" required>
+                <div class="hint">Mínimo 6 caracteres.</div>
+            </div>
+            <div class="form-group">
+                <label>Rol</label>
+                <div class="role-options" role="radiogroup">
+                    <label class="role-option"><input type="radio" name="tipoUsuario" value="EMPLEADOR">
+                        <span><strong>Empleador</strong>Publico trabajos y contrato personas.</span></label>
+                    <label class="role-option"><input type="radio" name="tipoUsuario" value="EMPLEADO">
+                        <span><strong>Empleado</strong>Me postulo a trabajos y ofrezco servicios.</span></label>
+                </div>
+                <div class="hint">El rol no se puede cambiar después.</div>
+            </div>
+            <div class="form-group">
+                <label for="reg-telefono">Teléfono <span class="muted">(opcional)</span></label>
+                <input type="tel" id="reg-telefono" name="telefono" maxlength="20" autocomplete="tel">
+                <div class="hint">Es privado: solo se comparte cuando se acepta una postulación.</div>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Crear cuenta</button>
+        </form>
+    </section>
+</main>
+<footer class="footer">Omni Solutions · Versión beta</footer>
+<script src="/js/app.js"></script>
+<script src="/js/index.js"></script>
+</body>
+</html>

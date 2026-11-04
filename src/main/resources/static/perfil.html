@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Perfil | Omni Solutions</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main class="page page-narrow">
+    <div class="card card-flush">
+        <div class="profile-cover profile-cover-lg"></div>
+        <div class="profile-head" id="cabecera"></div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Editar información personal</h2>
+        <div id="alerta" class="alert" hidden></div>
+        <form id="form-perfil" novalidate>
+            <div class="form-group">
+                <label for="nombre">Nombre y apellido</label>
+                <input type="text" id="nombre" name="nombre" maxlength="100" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono <span class="muted">(opcional)</span></label>
+                <input type="tel" id="telefono" name="telefono" maxlength="20">
+                <div class="hint">Tu teléfono es privado. Solo lo verá la otra parte cuando una postulación sea aceptada.
+                    Dejalo vacío para no compartir ningún número.</div>
+            </div>
+            <div class="form-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" disabled>
+            </div>
+            <div class="form-group">
+                <label for="rol">Rol</label>
+                <input type="text" id="rol" disabled>
+                <div class="hint">El rol se elige al registrarse y no puede modificarse.</div>
+            </div>
+            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+        </form>
+    </div>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/perfil.js"></script>
+</body>
+</html>

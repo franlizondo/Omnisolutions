@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mis publicaciones | Omni Solutions</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main class="page page-narrow">
+    <div class="card">
+        <div class="card-title">
+            <h1>Mis publicaciones</h1>
+            <a class="btn btn-primary btn-sm" href="/publicar.html">Nueva publicación</a>
+        </div>
+        <div class="filters" id="filtros">
+            <button type="button" class="chip active" data-estado="">Todas</button>
+            <button type="button" class="chip" data-estado="ACTIVA">Activas</button>
+            <button type="button" class="chip" data-estado="CERRADA">Cerradas</button>
+        </div>
+    </div>
+    <div class="card card-flush" id="lista"><div class="loading">Cargando…</div></div>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/mis-publicaciones.js"></script>
+</body>
+</html>

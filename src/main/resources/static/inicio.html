@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inicio | Omni Solutions</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<main class="page layout">
+    <!-- Izquierda: usuario -->
+    <aside class="col-left">
+        <div class="card card-flush sticky" id="perfil-lateral">
+            <div class="loading">Cargando…</div>
+        </div>
+    </aside>
+
+    <!-- Centro: publicaciones -->
+    <section class="col-center" aria-label="Publicaciones">
+        <div class="card composer" id="composer"></div>
+
+        <div class="card">
+            <form class="filters" id="filtros" role="search">
+                <button type="button" class="chip active" data-tipo="">Todas</button>
+                <button type="button" class="chip" data-tipo="TRABAJO">Trabajos</button>
+                <button type="button" class="chip" data-tipo="SERVICIO">Servicios</button>
+                <input class="search" type="search" name="q" placeholder="Buscar publicaciones"
+                       aria-label="Buscar publicaciones">
+            </form>
+        </div>
+
+        <div id="feed"><div class="loading">Cargando publicaciones…</div></div>
+    </section>
+
+    <!-- Derecha: información, consejos y accesos -->
+    <aside class="col-right">
+        <div class="sticky">
+            <div class="card">
+                <h2 class="card-title">Omni Solutions</h2>
+                <p class="small muted">Una red para encontrar trabajo y personal de confianza. Los empleadores publican
+                    trabajos; los empleados ofrecen servicios y se postulan. Los teléfonos se mantienen privados hasta
+                    que una postulación es aceptada.</p>
+            </div>
+            <div class="card">
+                <h2 class="card-title">Consejos</h2>
+                <ul class="tips" id="consejos"></ul>
+            </div>
+            <div class="card">
+                <h2 class="card-title">Accesos rápidos</h2>
+                <ul class="link-list">
+                    <li><a href="/publicar.html" id="acceso-publicar">Nueva publicación</a></li>
+                    <li><a href="/mis-publicaciones.html">Mis publicaciones</a></li>
+                    <li><a href="/postulaciones.html">Postulaciones</a></li>
+                    <li><a href="/perfil.html">Editar perfil y teléfono</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+</main>
+<script src="/js/app.js"></script>
+<script src="/js/inicio.js"></script>
+</body>
+</html>
