@@ -5,7 +5,8 @@
 --
 -- IMPORTANTE: reemplazar 'cambiar_esta_contrasena' por una contraseña
 -- propia y usar los mismos valores en el archivo .env (DB_USER / DB_PASSWORD).
--- El script es idempotente: puede ejecutarse más de una vez sin borrar datos.
+-- Puede ejecutarse más de una vez sin borrar datos; cada ejecución aplica la
+-- contraseña escrita abajo al usuario omni_app.
 -- =====================================================================
 
 SET NAMES utf8mb4;
@@ -14,7 +15,10 @@ CREATE DATABASE IF NOT EXISTS omni_solutions
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-CREATE USER IF NOT EXISTS 'omni_app'@'localhost' IDENTIFIED BY 'cambiar_esta_contrasena';
+-- Se recrea el usuario para que la contraseña de abajo se aplique aunque el script
+-- se ejecute más de una vez (CREATE USER IF NOT EXISTS conservaría la contraseña vieja).
+DROP USER IF EXISTS 'omni_app'@'localhost';
+CREATE USER 'omni_app'@'localhost' IDENTIFIED BY 'cambiar_esta_contrasena';
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, ALTER, INDEX, REFERENCES
     ON omni_solutions.* TO 'omni_app'@'localhost';
 FLUSH PRIVILEGES;
