@@ -12,41 +12,26 @@ coincidan con el esquema.
 
 ## Diagrama entidad-relación
 
-```mermaid
-erDiagram
-    USUARIOS ||--o{ PUBLICACIONES : "publica"
-    USUARIOS ||--o{ POSTULACIONES : "se postula (empleado)"
-    PUBLICACIONES ||--o{ POSTULACIONES : "recibe"
+![Diagrama entidad-relación de Omni Solutions](img/diagrama-er.png)
 
-    USUARIOS {
-        BIGINT id_usuario PK
-        VARCHAR nombre
-        VARCHAR usuario UK
-        VARCHAR contrasena "hash BCrypt"
-        VARCHAR tipo_usuario "EMPLEADOR | EMPLEADO"
-        VARCHAR telefono "opcional, privado"
-        DATETIME fecha_registro
-    }
-    PUBLICACIONES {
-        BIGINT id_publicacion PK
-        BIGINT id_usuario FK
-        VARCHAR tipo "TRABAJO | SERVICIO"
-        VARCHAR titulo
-        VARCHAR descripcion
-        VARCHAR ubicacion "opcional"
-        DATETIME fecha_publicacion
-        VARCHAR estado "ACTIVA | CERRADA"
-    }
-    POSTULACIONES {
-        BIGINT id_postulacion PK
-        BIGINT id_usuario FK
-        BIGINT id_publicacion FK
-        DATETIME fecha_postulacion
-        VARCHAR estado "PENDIENTE | ACEPTADA | RECHAZADA"
-    }
-```
+Archivo editable: [`diagrama-er.drawio`](diagrama-er.drawio). Se abre en <https://app.diagrams.net>
+(*Archivo → Abrir desde → Dispositivo*) o con draw.io Desktop.
 
-## Tablas
+Notación "pata de gallo": la doble barra indica **uno y solo uno** y el círculo con la pata de gallo indica **cero o muchos**.
+
+| Relación | Cardinalidad | Clave foránea |
+|---|---|---|
+| Un usuario **publica** publicaciones | 1 : 0..N | `publicaciones.id_usuario` → `usuarios.id_usuario` |
+| Un usuario (empleado) **se postula** | 1 : 0..N | `postulaciones.id_usuario` → `usuarios.id_usuario` |
+| Una publicación (trabajo) **recibe** postulaciones | 1 : 0..N | `postulaciones.id_publicacion` → `publicaciones.id_publicacion` |
+
+## Qué guarda cada tabla
+
+- **USUARIOS**: las cuentas de la plataforma (empleadores y empleados) con su nombre, usuario, contraseña cifrada con BCrypt, rol y teléfono privado.
+- **PUBLICACIONES**: los trabajos que publican los empleadores y los servicios que ofrecen los empleados, con su estado (activa o cerrada).
+- **POSTULACIONES**: cada postulación de un empleado a un trabajo y su estado (pendiente, aceptada o rechazada), que habilita compartir los teléfonos.
+
+## Detalle de las tablas
 
 ### USUARIOS
 
