@@ -149,7 +149,7 @@ mvn test -Dspring.datasource.url="jdbc:mysql://localhost:3306/omni_solutions_tes
          -Dspring.sql.init.mode=always -Dspring.jpa.hibernate.ddl-auto=validate
 ```
 
-El detalle de los casos y resultados está en [docs/proyecto.md](docs/proyecto.md#7-pruebas).
+El detalle de los casos y resultados está en [docs/proyecto.md](docs/proyecto.md#9-pruebas).
 
 ## API REST
 
