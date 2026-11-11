@@ -16,82 +16,129 @@ postulación.
 
 El rol se elige al crear la cuenta y **no puede cambiarse**.
 
-## 1. Acceso (`index.html`)
+## Flujo principal
 
-- **Crear cuenta**: completar nombre, usuario (letras, números, `.`, `-`, `_`), contraseña (mínimo 6 caracteres),
-  rol y, opcionalmente, teléfono. Al crearla se inicia sesión automáticamente.
-- **Iniciar sesión**: usuario y contraseña. El usuario no distingue mayúsculas de minúsculas.
-- Si ya hay una sesión abierta, la pantalla lleva directamente al inicio.
+El recorrido completo es el siguiente:
 
-## 2. Barra superior
+1. El usuario se registra.
+2. El empleador publica un trabajo.
+3. El empleado lo encuentra en el inicio y se postula.
+4. El empleador acepta la postulación.
+5. Los dos pueden ver el teléfono del otro para coordinar.
 
-Presente en todas las pantallas internas: **Inicio**, **Publicar**, **Mis publicaciones**, **Postulaciones**,
-**Perfil** y **Salir** (cierra la sesión). El buscador busca en las publicaciones activas.
-En pantallas pequeñas se muestran solo los íconos.
+### 1. Crear una cuenta o iniciar sesión
 
-## 3. Inicio (`inicio.html`)
+En la pantalla de acceso (`index.html`) hay dos pestañas:
 
-- **Izquierda**: tu nombre, usuario, rol y un resumen (publicaciones activas, postulaciones pendientes y aceptadas).
-  "Ver mi perfil" lleva al perfil.
-- **Centro**: el feed de publicaciones **activas** (las cerradas no aparecen).
-  - Filtros *Todas / Trabajos / Servicios* y búsqueda por título, descripción o ubicación.
-  - Cada tarjeta muestra autor, tipo, fecha, título, descripción resumida y ubicación.
-  - **Ver detalle** abre la publicación completa.
-  - Empleados: **Postularme** en los trabajos activos. Si ya te postulaste, se muestra el estado.
-  - En tus propias publicaciones se indica "Tu publicación" y, en trabajos, la cantidad de postulaciones.
+- **Crear cuenta**: completar nombre y apellido, usuario (letras, números, `.`, `-` o `_`), contraseña
+  (mínimo 6 caracteres), **rol** y, si se quiere, teléfono. Al presionar **Crear cuenta** se inicia sesión
+  automáticamente.
+- **Iniciar sesión**: usuario y contraseña. El usuario no distingue entre mayúsculas y minúsculas.
+
+![Pantalla de registro](img/manual/01-acceso-registro.png)
+
+### 2. Recorrer el inicio
+
+La pantalla de inicio (`inicio.html`) se divide en tres columnas:
+
+- **Izquierda**: tus datos (nombre, usuario y rol) y un resumen de tus publicaciones y postulaciones.
+- **Centro**: las publicaciones **activas** de todos los usuarios. Se pueden filtrar por *Todas*, *Trabajos* o
+  *Servicios* y buscar por palabra clave. Cada tarjeta tiene el botón **Ver detalle**. Los empleados ven además
+  **Postularme** en los trabajos, o el estado de su postulación si ya se postularon.
 - **Derecha**: información de la plataforma, consejos según tu rol y accesos rápidos.
 
-## 4. Publicar (`publicar.html`)
+La barra superior lleva a **Inicio**, **Publicar**, **Mis publicaciones**, **Postulaciones**, **Perfil** y **Salir**.
 
-El tipo se asigna según el rol (empleador → **Trabajo**, empleado → **Servicio**).
-Completar título (5–120 caracteres), descripción (10–2000) y ubicación (opcional) y presionar **Publicar**.
-La fecha se registra automáticamente y la publicación queda **Activa**.
+![Pantalla de inicio de un empleado](img/manual/02-inicio.png)
 
-La misma pantalla se usa para **editar** (botón *Editar* en el detalle o en Mis publicaciones).
-Solo se pueden editar publicaciones propias.
+### 3. Publicar un trabajo (empleador) o un servicio (empleado)
 
-## 5. Detalle (`detalle.html`)
+En **Publicar**, el tipo de publicación se asigna según el rol: el empleador publica un **Trabajo** y el empleado,
+un **Servicio**. Hay que completar el título, la descripción y, de forma opcional, la ubicación, y presionar
+**Publicar**. La publicación queda **Activa** con la fecha del día.
 
-Muestra la publicación completa: autor, tipo, ubicación, fecha, estado y descripción. Según quién la consulta:
+![Formulario de publicación](img/manual/03-publicar.png)
 
-- **Propietario**: *Editar*, *Cerrar publicación* (deja de aparecer en el feed y no admite nuevas postulaciones) y
-  *Eliminar* (borra también sus postulaciones; pide confirmación). Si es un trabajo, debajo aparece la lista de
-  **postulaciones recibidas** con *Aceptar*, *Rechazar* y *Ver teléfono*.
-- **Empleado** en un trabajo activo: *Postularme a este trabajo*. Si ya se postuló, ve el estado; si fue aceptado,
-  *Ver teléfono del empleador*.
-- Trabajo cerrado: se informa que no recibe nuevas postulaciones.
+**Validaciones:** si un dato es inválido, la publicación no se guarda y el error aparece debajo de cada campo.
+Por ejemplo, un título de menos de 5 caracteres o una descripción vacía.
 
-## 6. Mis publicaciones (`mis-publicaciones.html`)
+![Errores de validación al publicar](img/manual/04-publicar-validacion.png)
 
-Lista de todas tus publicaciones (activas y cerradas) con filtros por estado. Para cada una: *Ver*, *Editar*,
-*Cerrar* (si está activa) y *Eliminar*. En los trabajos, el enlace de cantidad de postulaciones lleva a
-Postulaciones filtradas por ese trabajo.
+### 4. Postularse a un trabajo (empleado)
 
-## 7. Postulaciones (`postulaciones.html`)
+Desde el inicio, el empleado abre **Ver detalle** del trabajo que le interesa y presiona
+**Postularme a este trabajo** (también puede postularse directamente desde la tarjeta del inicio). La postulación
+queda **Pendiente**.
 
-**Empleador — Postulaciones recibidas**
-- Filtro por trabajo y por estado (pendientes, aceptadas, rechazadas).
-- **Aceptar** o **Rechazar** cada postulación pendiente (se pide confirmación). Cada postulación se gestiona por
-  separado: aceptar una **no cambia** las demás y se pueden aceptar varias para el mismo trabajo.
-- Una postulación aceptada o rechazada **no puede volver a cambiarse**.
-- En las aceptadas, **Ver teléfono** muestra el número del empleado o el aviso "no proporcionó un número de teléfono".
+- Solo se puede postular una vez a cada trabajo.
+- Los trabajos cerrados no aceptan nuevas postulaciones.
+- Los servicios no reciben postulaciones.
 
-**Empleado — Mis postulaciones**
-- Estado de cada postulación (Pendiente, Aceptada, Rechazada) y si el trabajo fue cerrado.
-- En las aceptadas, **Ver teléfono del empleador**.
+![Detalle de un trabajo con el botón Postularme](img/manual/05-detalle-postularme.png)
 
-## 8. Perfil (`perfil.html`)
+En **Postulaciones**, el empleado ve todas sus postulaciones con su estado (*Pendiente*, *Aceptada* o
+*Rechazada*) y puede filtrarlas por estado.
 
-Muestra nombre, usuario, rol, teléfono y fecha de registro. Se pueden modificar el **nombre** y el **teléfono**
-(dejarlo vacío para no compartir ningún número). El usuario y el rol no se pueden cambiar.
+![Postulaciones realizadas por un empleado](img/manual/06-mis-postulaciones-empleado.png)
+
+### 5. Aceptar o rechazar postulaciones (empleador)
+
+En **Postulaciones**, el empleador ve quién se postuló a cada uno de sus trabajos. Puede filtrar por trabajo y
+por estado, y en cada postulación pendiente tiene los botones **Aceptar** y **Rechazar** (la aplicación pide
+confirmación).
+
+- Cada postulación se gestiona por separado: aceptar una **no cambia** las demás, y se puede aceptar a varias
+  personas para el mismo trabajo.
+- Una postulación aceptada o rechazada **ya no puede cambiarse**.
+
+![Postulaciones recibidas por un empleador](img/manual/08-postulaciones-recibidas.png)
+
+### 6. Ver el teléfono de la otra parte
+
+Cuando una postulación está **Aceptada**, aparece el botón **Ver teléfono** (para el empleador) o
+**Ver teléfono del empleador** (para el empleado). Al presionarlo se muestra el número. Si la otra persona
+no cargó un teléfono, se muestra un aviso.
+
+Antes de la aceptación, el teléfono no aparece en ninguna parte de la aplicación.
+
+![Teléfono del empleador visible para el empleado aceptado](img/manual/07-ver-telefono.png)
+
+## Otras pantallas
+
+### Mis publicaciones
+
+Lista todas tus publicaciones (activas y cerradas) y permite filtrarlas por estado. Cada una tiene estas opciones:
+
+- **Ver**: abre el detalle.
+- **Editar**: abre el formulario con los datos cargados.
+- **Cerrar**: la publicación deja de aparecer en el inicio y no recibe nuevas postulaciones.
+- **Eliminar**: borra la publicación y sus postulaciones. Pide confirmación.
+
+En los trabajos, el enlace con la cantidad de postulaciones lleva a **Postulaciones** filtradas por ese trabajo.
+
+![Mis publicaciones](img/manual/09-mis-publicaciones.png)
+
+### Detalle de una publicación
+
+Muestra la publicación completa. Si sos el autor, tenés los botones **Editar**, **Cerrar publicación** y
+**Eliminar**. Si es un trabajo, debajo aparece la lista de postulaciones recibidas, con las mismas acciones que en
+**Postulaciones**.
+
+### Perfil
+
+Muestra tu nombre, usuario, rol, teléfono y fecha de registro. Se pueden modificar el **nombre** y el
+**teléfono** (dejalo vacío para no compartir ningún número). El usuario y el rol no se pueden cambiar.
+
+![Perfil de usuario](img/manual/10-perfil.png)
 
 ## Mensajes frecuentes
 
 | Mensaje | Motivo |
 |---|---|
-| Usuario o contraseña incorrectos | Datos de acceso inválidos |
-| El nombre de usuario ya está en uso | Elegir otro usuario |
+| Usuario o contraseña incorrectos | Los datos de acceso no son válidos |
+| El nombre de usuario ya está en uso | Hay que elegir otro usuario |
+| El título debe tener entre 5 y 120 caracteres | El título es demasiado corto o demasiado largo |
 | Ya te postulaste a este trabajo | Solo se permite una postulación por trabajo |
 | El trabajo está cerrado y no acepta nuevas postulaciones | El empleador cerró la publicación |
-| El teléfono solo está disponible cuando la postulación fue aceptada | Todavía no fue aceptada |
-| La sesión de seguridad expiró. Recargá la página… | Token de seguridad vencido: recargar la página |
+| El teléfono solo está disponible cuando la postulación fue aceptada | La postulación todavía no fue aceptada |
+| La sesión de seguridad expiró. Recargá la página… | Venció el token de seguridad: hay que recargar la página |
