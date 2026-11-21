@@ -6,6 +6,8 @@ los empleados ofrecen servicios y se postulan a trabajos, y el teléfono de cont
 
 Versión beta funcional: frontend, backend y base de datos MySQL integrados.
 
+![Pantalla de inicio de Omni Solutions](docs/img/manual/02-inicio.png)
+
 ## Funcionalidades
 
 | Área | Implementado |
@@ -15,6 +17,22 @@ Versión beta funcional: frontend, backend y base de datos MySQL integrados.
 | Postulaciones | Postularse (solo empleados, solo a trabajos activos, sin duplicados), consultar realizadas y recibidas, aceptar y rechazar (cada una por separado; varias aceptadas por trabajo). |
 | Contacto | Teléfono visible únicamente entre las partes de una postulación ACEPTADA. Mensaje si no fue proporcionado. Nunca aparece en listados ni búsquedas. |
 | Seguridad | Spring Security con sesión, CSRF, control de rol y de propiedad en el backend, validaciones, respuestas de error JSON uniformes, CSP. |
+
+## Capturas
+
+Recorrido del flujo principal. La explicación de cada pantalla está en el
+[manual de usuario](docs/manual-usuario.md).
+
+| | |
+|---|---|
+| **1. Crear cuenta** (elección de rol) | **2. Publicar un trabajo** |
+| ![Registro](docs/img/manual/01-acceso-registro.png) | ![Publicar](docs/img/manual/03-publicar.png) |
+| **3. Validación de datos** | **4. Postularse a un trabajo** |
+| ![Validación](docs/img/manual/04-publicar-validacion.png) | ![Postularme](docs/img/manual/05-detalle-postularme.png) |
+| **5. Postulaciones recibidas** (aceptar o rechazar) | **6. Teléfono visible tras la aceptación** |
+| ![Postulaciones recibidas](docs/img/manual/08-postulaciones-recibidas.png) | ![Ver teléfono](docs/img/manual/07-ver-telefono.png) |
+| **7. Mis publicaciones** | **8. Perfil** |
+| ![Mis publicaciones](docs/img/manual/09-mis-publicaciones.png) | ![Perfil](docs/img/manual/10-perfil.png) |
 
 ## Tecnologías
 
